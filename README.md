@@ -2,7 +2,7 @@
 
 Okie doke. Here's my pass at the challenge below.
 
-Run it locally with `npm start` followed by pointing your browser to `localhost:8888`.
+Run it locally with `npm i && npm start` followed by pointing your browser to `localhost:8888`.
 
 Another option is to simply point your browser to [this deployment](http://geo-challenge.herokuapp.com). It may take a sec to spin up.
 

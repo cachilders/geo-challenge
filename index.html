@@ -2,23 +2,31 @@
 <html lang="en-us">
   <head>
     <title>geo-challenge</title>
+    <link href="https://fonts.googleapis.com/css?family=Cherry+Swash|Open+Sans" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/grid.min.css" rel="stylesheet">
   </head>
   <body>
-    <div id="app">
-      <h1>Find the store nearest you</h1>
-      <p>
-        <label for="address">Enter your street address</label>
+    <div id="app" class="equal width center aligned padded grid container">
+      <div class="row item headspace">
+        <h1>Find the store nearest you</h1>
+      </div>
+      <div class="row item">
+        <label for="address" class="address-label">Enter your street address</label><br />
         <input
           v-model="address"
           id="address"
           v-on:keyup.enter="search"
           placeholder="123 Friendship Ln, Walkerton, IN 46574">
-        <button @click="search">Submit</button>
-      </p>
-      <p v-if="result.City" v-cloak>
-        {{ result["Store Name"] }}<br />
-        {{ result["Address"] }}, {{ result["City"] }}, {{ result["State"] }} {{ result["Zip Code"] }}
-      <p>
+        <button @click="search" :disabled="loading">Search</button>
+        <div v-if="loading" v-cloak>
+          <p class="results">loading...</p>
+        </div>
+        <div v-if="result.City" v-cloak>
+        <p class="results">Your nearest store is:</p>
+        <h2>{{ result["Store Name"] }}</h2>
+        <p>{{ result["Address"] }}, {{ result["City"] }}, {{ result["State"] }} {{ result["Zip Code"] }}</p>
+        </div>
+      </div>
     </div>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.4/vue.js"></script>
@@ -35,7 +43,8 @@
             City: '',
             State: '',
             'Zip Code': '',
-          }
+          },
+          loading: false
         }
       },
       methods: {
@@ -46,9 +55,11 @@
       created() {
         this.$on('search', function() {
           const context = this;
+          this.loading = true;
           axios.get('/fetch?address=' + this.address)
           .then(function (response) {
             context.result = response.data;
+            context.loading = false;
           })
           .catch(function (error) {
             context.result = error;
@@ -57,4 +68,45 @@
       }
     });
   </script>
+  <style>
+    html { 
+      background-color: #FBFFFE;
+      color: #616163;
+    }
+    body {
+      background: transparent;
+      font-family: 'Open Sans', sans-serif;
+      font-size: .7;
+      text-align: center;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      line-height: 1.2rem;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Cherry Swash', sans-serif;
+      color: #1A1A1D;
+    }
+    .headspace {
+      margin-top: 10%;
+    }
+    .results {
+      margin-top: 1rem;
+      color: #EDA02E;
+    }
+    .address-label {
+      color: #6B656C;
+    }
+    input {
+      font-family: 'Open Sans', sans-serif;
+      width: 20rem;
+      text-align: center;
+      font-size: .8rem;
+      margin-top: 1rem;
+    }
+    button {
+      font-size: .8rem;
+    }
+    [v-cloak] {
+      display: none;
+    }
+  </style>
 </html>

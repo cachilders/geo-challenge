@@ -55,6 +55,13 @@
       created() {
         this.$on('search', function() {
           const context = this;
+          this.result = {
+            'Store Name': '',
+            Address: '',
+            City: '',
+            State: '',
+            'Zip Code': '',
+          },
           this.loading = true;
           axios.get('/fetch?address=' + this.address)
           .then(function (response) {

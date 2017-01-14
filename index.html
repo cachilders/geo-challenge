@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>geo-challenge</title>
     <link href="https://fonts.googleapis.com/css?family=Cherry+Swash|Open+Sans" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/grid.min.css" rel="stylesheet">
   </head>
   <body>
-    <div id="app" class="equal width center aligned padded grid container">
+    <div id="app" class="center aligned padded grid container">
       <div class="row item headspace">
-        <h1>Find the store nearest you</h1>
+        <h1>Find the nearest store</h1>
       </div>
       <div class="row item">
         <label for="address" class="address-label">Enter your street address</label><br />
@@ -16,7 +18,7 @@
           v-model="address"
           id="address"
           v-on:keyup.enter="search"
-          placeholder="123 Friendship Ln, Walkerton, IN 46574">
+          placeholder="130 S Court St, Circleville, OH 43113"><br />
         <button @click="search" :disabled="loading">Search</button>
         <div v-if="loading" v-cloak>
           <p class="results">loading...</p>
@@ -78,14 +80,13 @@
   <style>
     html { 
       background-color: #FBFFFE;
+      font-size: 16px;
       color: #616163;
     }
     body {
       background: transparent;
       font-family: 'Open Sans', sans-serif;
-      font-size: .7;
       text-align: center;
-      font-family: Verdana, Geneva, Tahoma, sans-serif;
       line-height: 1.2rem;
     }
     h1, h2, h3, h4, h5, h6 {
@@ -93,7 +94,7 @@
       color: #1A1A1D;
     }
     .headspace {
-      margin-top: 10%;
+      margin-top: 5rem;
     }
     .results {
       margin-top: 1rem;
@@ -105,12 +106,18 @@
     input {
       font-family: 'Open Sans', sans-serif;
       width: 20rem;
+      height: 2rem;
       text-align: center;
       font-size: .8rem;
       margin-top: 1rem;
     }
     button {
       font-size: .8rem;
+      color: #616163;
+      outline: 1px solid #616163;
+      margin: 1rem;
+      line-height: 1.2rem;
+      width: 4rem;
     }
     [v-cloak] {
       display: none;

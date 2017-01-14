@@ -1,0 +1,28 @@
+{
+  "name": "geo-challenge",
+  "version": "1.0.0",
+  "description": "Find the closest store in a given CSV to a user-supplied address",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cachilders/geo-challenge.git"
+  },
+  "author": "Casey A. Childers",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cachilders/geo-challenge/issues"
+  },
+  "homepage": "https://github.com/cachilders/geo-challenge#readme",
+  "dependencies": {
+    "axios": "^0.15.3",
+    "csvtojson": "^1.1.2",
+    "express": "^4.14.0"
+  },
+  "devDependencies": {
+    "dotenv": "^4.0.0"
+  }
+}

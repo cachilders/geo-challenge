@@ -1,10 +1,22 @@
-# Coding challenge
+# Challenge results
+
+Okie doke. Here's my pass at the challenge below.
+
+Run it locally with `npm start` followed by pointing your browser to `localhost:8888`.
+
+Another option is to simply point your browser to [this deployment](http://geo-challenge.herokuapp.com). It may take a sec to spin up.
+
+This implementation is by no means perfect. It processes the distance for every available location from the target (thanks Pythagoras!) and sorts them all in kind. Given more available time I'd tighten that leak. Additionally, I'd do a bit more with validation and error-handling. That said, the MapBox API by which I'm snagging the coordinates is mighty generous in interpreting input.
+
+# ---
+
+## Coding challenge
 
 In this repo there is store-locations.csv
 
 This is a tabular dataset of the locations of every store of a major national retail chain.
 
-# Deliverables
+## Deliverables
 
 You can either fork this repo OR just download the file and you can create your own repo.
 
@@ -18,7 +30,7 @@ Also please write up a paragraph or two about how your solution works, any assum
 
 Send me a github link to the final project.
 
-# Notes
+## Notes
 
 Feel free to do this in whatever language you would like, and focus on the problem itself; the way data gets input into the program is not important. Command line, GUI application, or even editing an obvious variable at the top of a file. Whatever. As long as it's reasonably easy for me to run your code and there are clear instructions for doing so.
 

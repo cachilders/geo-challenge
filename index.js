@@ -8,6 +8,7 @@ const {
 const app = express();
 const api = express();
 
+
 api.get('/', (req, res) => {
   fetchCoordinates(req.query.address)
   .then((result) => {
@@ -25,4 +26,5 @@ app.use('/axios',
   express.static(`${__dirname}/node_modules/axios/dist/axios.min.js`));
 app.use('/fetch', api);
 
-app.listen(8888, console.log('Listening on port 8888'));
+const port = process.env.PORT || 8888;
+app.listen(port, console.log('Listening on port 8888'));

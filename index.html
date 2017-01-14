@@ -1,8 +1,60 @@
+<!DOCTYPE html>
 <html lang="en-us">
   <head>
     <title>geo-challenge</title>
   </head>
   <body>
-    <h1>Just a website.</h1>
+    <div id="app">
+      <h1>Find the store nearest you</h1>
+      <p>
+        <label for="address">Enter your street address</label>
+        <input
+          v-model="address"
+          id="address"
+          v-on:keyup.enter="search"
+          placeholder="123 Friendship Ln, Walkerton, IN 46574">
+        <button @click="search">Submit</button>
+      </p>
+      <p v-if="result.City" v-cloak>
+        {{ result["Store Name"] }}<br />
+        {{ result["Address"] }}, {{ result["City"] }}, {{ result["State"] }} {{ result["Zip Code"] }}
+      <p>
+    </div>
   </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.4/vue.js"></script>
+  <script src="axios/axios.min.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: function() {
+        return {
+          address: '',
+          result: {
+            'Store Name': '',
+            Address: '',
+            City: '',
+            State: '',
+            'Zip Code': '',
+          }
+        }
+      },
+      methods: {
+        search: function() {
+          this.$emit('search')
+        }
+      },
+      created() {
+        this.$on('search', function() {
+          const context = this;
+          axios.get('/fetch?address=' + this.address)
+          .then(function (response) {
+            context.result = response.data;
+          })
+          .catch(function (error) {
+            context.result = error;
+          });
+        });
+      }
+    });
+  </script>
 </html>

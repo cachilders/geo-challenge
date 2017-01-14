@@ -23,8 +23,8 @@ api.get('/', (req, res) => {
 
 app.use('/', express.static(`${__dirname}/`));
 app.use('/axios',
-  express.static(`${__dirname}/node_modules/axios/dist/axios.min.js`));
+  express.static(`${__dirname}/node_modules/axios/dist`));
 app.use('/fetch', api);
 
 const port = process.env.PORT || 8888;
-app.listen(port, console.log('Listening on port 8888'));
+app.listen(port, console.log(`Listening on ${port}`));
